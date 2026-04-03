@@ -12,10 +12,68 @@ import {
   BRANCHES,
   BRAND,
   WHATSAPP_NUMBER,
+  GOOGLE_RATING,
 } from "@/lib/constants";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
 import { useLanguage } from "@/lib/language-context";
-import { MapPin, MessageCircle } from "lucide-react";
+import { MapPin, MessageCircle, Star } from "lucide-react";
+
+function StatsStrip() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-40px" });
+  const { t } = useLanguage();
+
+  const stats = [
+    {
+      icon: <Star className="w-4 h-4 text-gold fill-gold" />,
+      value: `${GOOGLE_RATING.score}`,
+      labelCN: "Google 评分",
+      labelEN: "Google Rating",
+    },
+    {
+      icon: <span className="text-base">💬</span>,
+      value: `${GOOGLE_RATING.reviews}+`,
+      labelCN: "好评",
+      labelEN: "Reviews",
+    },
+    {
+      icon: <MapPin className="w-4 h-4 text-blush" />,
+      value: "4",
+      labelCN: "家分店",
+      labelEN: "Branches",
+    },
+    {
+      icon: <span className="text-base">🏆</span>,
+      value: "6+",
+      labelCN: "年专业服务",
+      labelEN: "Years Experience",
+    },
+  ];
+
+  return (
+    <div ref={ref} className="py-6 bg-white/60 border-y border-gold/10">
+      <div className="max-w-4xl mx-auto flex flex-wrap justify-center gap-6 md:gap-12 px-6">
+        {stats.map((stat, i) => (
+          <motion.div
+            key={stat.labelEN}
+            className="flex items-center gap-2"
+            initial={{ opacity: 0, y: 12 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.4, delay: i * 0.08 }}
+          >
+            {stat.icon}
+            <span className="font-heading text-xl md:text-2xl font-semibold text-heritage">
+              {stat.value}
+            </span>
+            <span className="font-ui text-xs md:text-sm text-text-muted">
+              {t(stat.labelCN, stat.labelEN)}
+            </span>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function SectionTitle({
   cn,
@@ -273,6 +331,7 @@ export default function Home() {
   return (
     <>
       <HeroSection />
+      <StatsStrip />
       <ServicesStrip />
       <ChineseDecorDivider />
       <WhyChooseUs />
