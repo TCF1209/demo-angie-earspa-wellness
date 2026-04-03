@@ -51,7 +51,7 @@ export function BranchCard({ branch, index }: BranchCardProps) {
 
           <div className="flex items-start gap-2 text-text-muted">
             <Clock size={16} className="mt-0.5 shrink-0 text-rose-deep" />
-            <span className="font-cn-body text-sm">{branch.hours}</span>
+            <span className="font-cn-body text-sm">{t(branch.hoursCN, branch.hoursEN)}</span>
           </div>
 
           {branch.mapUrl && (
@@ -128,7 +128,7 @@ export function BranchCard({ branch, index }: BranchCardProps) {
 
                 <div className="flex items-start gap-2 text-text-muted">
                   <Clock size={16} className="mt-0.5 shrink-0 text-rose-deep" />
-                  <span className="font-cn-body text-sm">{branch.hours}</span>
+                  <span className="font-cn-body text-sm">{t(branch.hoursCN, branch.hoursEN)}</span>
                 </div>
 
                 {branch.mapUrl && (

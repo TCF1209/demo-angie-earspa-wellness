@@ -152,17 +152,24 @@ export const PACKAGES = [
   },
 ];
 
+export const GOOGLE_RATING = {
+  score: 4.9,
+  reviews: 304,
+};
+
 export const BRANCHES = [
   {
     id: "bayu-tinggi",
-    nameCN: "吧生店",
+    nameCN: "巴生专业正宗采耳头疗养生堂",
     nameEN: "Bayu Tinggi, Klang",
     address:
-      "No.2-A, Tingkat 1, Lorong Sentosa 4A/KS6, Taman Bayu Tinggi, 41200 Klang, Selangor",
-    phone: "03-33916741",
+      "2A, Lorong Sentosa 4A, Bandar Bukit Tinggi 1, 42000 Pelabuhan Klang, Selangor",
+    phone: "018-211 2544",
     whatsapp: "60182112544",
-    hours: "TODO: replace with real hours",
-    mapUrl: "https://www.google.com/maps/search/Angie+Earspa+No.2-A+Lorong+Sentosa+4A+Taman+Bayu+Tinggi+41200+Klang+Selangor",
+    hours: "11:00 AM – 7:30 PM",
+    hoursCN: "每日 11:00 AM – 7:30 PM",
+    hoursEN: "Daily 11:00 AM – 7:30 PM",
+    mapUrl: "https://www.google.com/maps/search/Angie+Earspa+Bayu+Tinggi+Klang",
     mapType: "google" as "google" | "waze",
   },
   {
@@ -171,10 +178,12 @@ export const BRANCHES = [
     nameEN: "Setia Alam",
     address:
       "No.4-2-2, Jalan Setia Prima L, U13/L, Setia Alam, 40170 Shah Alam, Selangor",
-    phone: "03-33595956",
+    phone: "03-3359 5956",
     whatsapp: "60182112544",
-    hours: "TODO: replace with real hours",
-    mapUrl: "https://www.google.com/maps/search/Angie+Earspa+No.4-2-2+Jalan+Setia+Prima+L+Setia+Alam+40170+Shah+Alam+Selangor",
+    hours: "11:00 AM – 7:30 PM",
+    hoursCN: "每日 11:00 AM – 7:30 PM",
+    hoursEN: "Daily 11:00 AM – 7:30 PM",
+    mapUrl: "https://www.google.com/maps/search/Angie+Earspa+Setia+Alam+Shah+Alam",
     mapType: "google" as "google" | "waze",
   },
   {
@@ -183,10 +192,12 @@ export const BRANCHES = [
     nameEN: "Cheras C180",
     address:
       "No.12, Ground Floor, Jalan C180/1, Dataran C180, 43200 Cheras, Selangor",
-    phone: "03-90811359",
+    phone: "03-9081 1359",
     whatsapp: "60182112544",
-    hours: "TODO: replace with real hours",
-    mapUrl: "https://www.google.com/maps/search/Angie+Earspa+No.12+Jalan+C180+Dataran+C180+43200+Cheras+Selangor",
+    hours: "11:00 AM – 7:30 PM",
+    hoursCN: "每日 11:00 AM – 7:30 PM",
+    hoursEN: "Daily 11:00 AM – 7:30 PM",
+    mapUrl: "https://www.google.com/maps/search/Angie+Earspa+Cheras+C180",
     mapType: "google" as "google" | "waze",
   },
   {
@@ -195,10 +206,12 @@ export const BRANCHES = [
     nameEN: "PJ Damansara Utama",
     address:
       "No.6, Jalan SS21/58, Damansara Utama, 47400 Petaling Jaya, Selangor Darul Ehsan",
-    phone: "03-77319481",
+    phone: "03-7731 9481",
     whatsapp: "60182112544",
-    hours: "TODO: replace with real hours",
-    mapUrl: "https://www.google.com/maps/search/Angie+Earspa+No.6+Jalan+SS21+58+Damansara+Utama+47400+Petaling+Jaya+Selangor",
+    hours: "11:00 AM – 7:30 PM",
+    hoursCN: "每日 11:00 AM – 7:30 PM",
+    hoursEN: "Daily 11:00 AM – 7:30 PM",
+    mapUrl: "https://www.google.com/maps/search/Angie+Earspa+Damansara+Utama+Petaling+Jaya",
     mapType: "google" as "google" | "waze",
   },
 ];
