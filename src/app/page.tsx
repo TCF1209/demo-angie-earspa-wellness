@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import { HeroSection } from "@/components/HeroSection";
 import { ServiceCard } from "@/components/ServiceCard";
@@ -18,59 +18,98 @@ import { buildWhatsAppLink } from "@/lib/whatsapp";
 import { useLanguage } from "@/lib/language-context";
 import { MapPin, MessageCircle, Star } from "lucide-react";
 
+function useCountUp(target: number, inView: boolean, duration = 1.5, decimals = 0) {
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    if (!inView) return;
+    let start = 0;
+    const step = target / (duration * 60);
+    const timer = setInterval(() => {
+      start += step;
+      if (start >= target) {
+        setValue(target);
+        clearInterval(timer);
+      } else {
+        setValue(Number(start.toFixed(decimals)));
+      }
+    }, 1000 / 60);
+    return () => clearInterval(timer);
+  }, [inView, target, duration, decimals]);
+  return decimals > 0 ? value.toFixed(decimals) : Math.round(value);
+}
+
 function StatsStrip() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-40px" });
+  const inView = useInView(ref, { once: true, margin: "0px" });
   const { t } = useLanguage();
+
+  const rating = useCountUp(GOOGLE_RATING.score, inView, 1.2, 1);
+  const reviews = useCountUp(GOOGLE_RATING.reviews, inView, 1.5);
+  const branches = useCountUp(4, inView, 0.8);
+  const years = useCountUp(6, inView, 1.0);
 
   const stats = [
     {
-      icon: <Star className="w-4 h-4 text-gold fill-gold" />,
-      value: `${GOOGLE_RATING.score}`,
+      icon: <Star className="w-5 h-5 text-gold fill-gold" />,
+      value: rating,
+      suffix: "",
       labelCN: "Google 评分",
       labelEN: "Google Rating",
     },
     {
-      icon: <span className="text-base">💬</span>,
-      value: `${GOOGLE_RATING.reviews}+`,
+      icon: <span className="text-lg">💬</span>,
+      value: reviews,
+      suffix: "+",
       labelCN: "好评",
       labelEN: "Reviews",
     },
     {
-      icon: <MapPin className="w-4 h-4 text-blush" />,
-      value: "4",
+      icon: <MapPin className="w-5 h-5 text-blush" />,
+      value: branches,
+      suffix: "",
       labelCN: "家分店",
       labelEN: "Branches",
     },
     {
-      icon: <span className="text-base">🏆</span>,
-      value: "6+",
+      icon: <span className="text-lg">🏆</span>,
+      value: years,
+      suffix: "+",
       labelCN: "年专业服务",
       labelEN: "Years Experience",
     },
   ];
 
   return (
-    <div ref={ref} className="py-6 bg-white/60 border-y border-gold/10">
-      <div className="max-w-4xl mx-auto flex flex-wrap justify-center gap-6 md:gap-12 px-6">
-        {stats.map((stat, i) => (
-          <motion.div
-            key={stat.labelEN}
-            className="flex items-center gap-2"
-            initial={{ opacity: 0, y: 12 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.4, delay: i * 0.08 }}
-          >
-            {stat.icon}
-            <span className="font-heading text-xl md:text-2xl font-semibold text-heritage">
-              {stat.value}
-            </span>
-            <span className="font-ui text-xs md:text-sm text-text-muted">
-              {t(stat.labelCN, stat.labelEN)}
-            </span>
-          </motion.div>
-        ))}
-      </div>
+    <div className="relative z-10 px-4 md:px-6 -mt-10 md:-mt-12 mb-6">
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 30, scale: 0.96 }}
+        animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+        transition={{ duration: 0.6, ease: "easeOut" as const }}
+        className="max-w-3xl mx-auto bg-white/80 backdrop-blur-md rounded-2xl border border-gold/20 shadow-[0_8px_40px_rgba(201,169,110,0.12)] py-6 px-6 md:px-10"
+      >
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0">
+          {stats.map((stat, i) => (
+            <motion.div
+              key={stat.labelEN}
+              className={`flex flex-col items-center text-center ${
+                i < stats.length - 1 ? "md:border-r md:border-gold/15" : ""
+              }`}
+              initial={{ opacity: 0, y: 16 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
+            >
+              <div className="mb-2">{stat.icon}</div>
+              <span className="font-heading text-2xl md:text-3xl font-bold text-heritage leading-none">
+                {stat.value}{stat.suffix}
+              </span>
+              <span className="font-ui text-xs text-text-muted mt-1">
+                {t(stat.labelCN, stat.labelEN)}
+              </span>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
     </div>
   );
 }
