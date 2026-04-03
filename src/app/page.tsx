@@ -5,11 +5,10 @@ import { useRef } from "react";
 import Link from "next/link";
 import { HeroSection } from "@/components/HeroSection";
 import { ServiceCard } from "@/components/ServiceCard";
-import { TestimonialCard } from "@/components/TestimonialCard";
+import { TestimonialCarousel } from "@/components/TestimonialCarousel";
 import { ChineseDecorDivider } from "@/components/ChineseDecorDivider";
 import {
   SERVICES,
-  TESTIMONIALS,
   BRANCHES,
   BRAND,
   WHATSAPP_NUMBER,
@@ -190,11 +189,7 @@ function TestimonialsSection() {
   return (
     <section className="py-24 px-6 bg-cream-alt">
       <SectionTitle cn="顾客好评" en="What Our Clients Say" />
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 overflow-x-auto">
-        {TESTIMONIALS.map((t, i) => (
-          <TestimonialCard key={t.name} testimonial={t} index={i} />
-        ))}
-      </div>
+      <TestimonialCarousel />
     </section>
   );
 }
@@ -218,7 +213,7 @@ function BranchesPreview() {
           >
             <MapPin className="w-6 h-6 text-blush mx-auto mb-3" />
             <h3 className="font-cn-heading text-lg text-heritage mb-2">
-              {branch.name}
+              {t(branch.nameCN, branch.nameEN)}
             </h3>
             <p className="text-sm text-text-muted mb-4">{branch.address}</p>
             <a

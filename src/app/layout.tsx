@@ -73,7 +73,7 @@ export default function RootLayout({
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />
-          <WhatsAppFAB number="60XXXXXXXXX" />
+          <WhatsAppFAB number="60182112544" />
         </Providers>
       </body>
     </html>

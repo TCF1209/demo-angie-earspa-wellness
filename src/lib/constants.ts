@@ -1,4 +1,4 @@
-export const WHATSAPP_NUMBER = "60XXXXXXXXX"; // TODO: replace with real number
+export const WHATSAPP_NUMBER = "60182112544";
 
 export const BRAND = {
   nameEN: "Angie Earspa Wellness",
@@ -155,35 +155,51 @@ export const PACKAGES = [
 export const BRANCHES = [
   {
     id: "bayu-tinggi",
-    name: "Bayu Tinggi, Klang",
-    address: "TODO: replace with real address",
-    whatsapp: "60XXXXXXXXX",
+    nameCN: "吧生店",
+    nameEN: "Bayu Tinggi, Klang",
+    address:
+      "No.2-A, Tingkat 1, Lorong Sentosa 4A/KS6, Taman Bayu Tinggi, 41200 Klang, Selangor",
+    phone: "03-33916741",
+    whatsapp: "60182112544",
     hours: "TODO: replace with real hours",
-    mapUrl: "",
+    mapUrl: "https://waze.com/ul/hw281hhe7d",
+    mapType: "waze" as const,
   },
   {
     id: "setia-alam",
-    name: "Setia Alam",
-    address: "TODO: replace with real address",
-    whatsapp: "60XXXXXXXXX",
+    nameCN: "Setia Alam 店",
+    nameEN: "Setia Alam",
+    address:
+      "No.4-2-2, Jalan Setia Prima L, U13/L, Setia Alam, 40170 Shah Alam, Selangor",
+    phone: "03-33595956",
+    whatsapp: "60182112544",
     hours: "TODO: replace with real hours",
-    mapUrl: "",
+    mapUrl: "https://waze.com/ul/hw281skjep",
+    mapType: "waze" as const,
   },
   {
     id: "cheras-c180",
-    name: "Cheras C180",
-    address: "TODO: replace with real address",
-    whatsapp: "60XXXXXXXXX",
+    nameCN: "Cheras C180 店",
+    nameEN: "Cheras C180",
+    address:
+      "No.12, Ground Floor, Jalan C180/1, Dataran C180, 43200 Cheras, Selangor",
+    phone: "03-90811359",
+    whatsapp: "60182112544",
     hours: "TODO: replace with real hours",
-    mapUrl: "",
+    mapUrl: "https://maps.app.goo.gl/jm9BCdayksev5Uq",
+    mapType: "google" as const,
   },
   {
     id: "pj-damansara",
-    name: "PJ Damansara Utama",
-    address: "TODO: replace with real address",
-    whatsapp: "60XXXXXXXXX",
+    nameCN: "PJ Damansara Utama 店",
+    nameEN: "PJ Damansara Utama",
+    address:
+      "No.6, Jalan SS21/58, Damansara Utama, 47400 Petaling Jaya, Selangor Darul Ehsan",
+    phone: "03-77319481",
+    whatsapp: "60182112544",
     hours: "TODO: replace with real hours",
     mapUrl: "",
+    mapType: "google" as const,
   },
 ];
 

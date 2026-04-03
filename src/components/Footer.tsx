@@ -133,7 +133,7 @@ export function Footer() {
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-blush mt-0.5 shrink-0" />
                 <span className="font-ui text-sm text-cream/70">
-                  {BRANCHES[0].name}
+                  {t(BRANCHES[0].nameCN, BRANCHES[0].nameEN)}
                 </span>
               </div>
               <div className="flex items-center gap-2">

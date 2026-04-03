@@ -28,10 +28,15 @@ export function BookingForm() {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
+    const selectedBranchForMsg = BRANCHES.find((b) => b.id === form.branch);
+    const branchLabel = selectedBranchForMsg
+      ? t(selectedBranchForMsg.nameCN, selectedBranchForMsg.nameEN)
+      : form.branch;
+
     const message = buildBookingMessage({
       name: form.name,
       contact: form.contact,
-      branch: form.branch,
+      branch: branchLabel,
       service: form.service,
       date: form.date,
       time: form.time,
@@ -39,7 +44,7 @@ export function BookingForm() {
     });
 
     // Find the selected branch to get its WhatsApp number
-    const selectedBranch = BRANCHES.find((b) => b.name === form.branch);
+    const selectedBranch = BRANCHES.find((b) => b.id === form.branch);
     const whatsappNumber = selectedBranch?.whatsapp;
 
     const link = buildWhatsAppLink(whatsappNumber, message);
@@ -105,8 +110,8 @@ export function BookingForm() {
         >
           <option value="">{t("请选择分店", "Select a branch")}</option>
           {BRANCHES.map((b) => (
-            <option key={b.id} value={b.name}>
-              {b.name}
+            <option key={b.id} value={b.id}>
+              {t(b.nameCN, b.nameEN)}
             </option>
           ))}
         </select>
