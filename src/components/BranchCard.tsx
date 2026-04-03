@@ -6,6 +6,7 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { MapPin, Clock, MessageCircle, ChevronDown } from "lucide-react";
 import type { BRANCHES } from "@/lib/constants";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
+import { useLanguage } from "@/lib/language-context";
 
 interface BranchCardProps {
   branch: (typeof BRANCHES)[0];
@@ -13,6 +14,7 @@ interface BranchCardProps {
 }
 
 export function BranchCard({ branch, index }: BranchCardProps) {
+  const { t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
   const [expanded, setExpanded] = useState(false);
@@ -61,7 +63,7 @@ export function BranchCard({ branch, index }: BranchCardProps) {
             className="inline-flex items-center gap-2 bg-heritage text-cream font-ui text-sm px-5 py-3 rounded-full hover:bg-heritage/90 transition-colors whitespace-nowrap"
           >
             <MessageCircle size={16} />
-            WhatsApp 预约
+            {t("WhatsApp 预约", "WhatsApp Booking")}
           </a>
         </motion.div>
       </div>
@@ -110,7 +112,7 @@ export function BranchCard({ branch, index }: BranchCardProps) {
                   className="inline-flex items-center justify-center gap-2 bg-heritage text-cream font-ui text-sm px-5 py-3 rounded-full hover:bg-heritage/90 transition-colors mt-1"
                 >
                   <MessageCircle size={16} />
-                  WhatsApp 预约
+                  {t("WhatsApp 预约", "WhatsApp Booking")}
                 </a>
               </div>
             </motion.div>

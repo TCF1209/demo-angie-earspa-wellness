@@ -4,8 +4,10 @@ import { motion } from "framer-motion";
 import { PackageCard } from "@/components/PackageCard";
 import { PACKAGES } from "@/lib/constants";
 import { ChineseDecorDivider } from "@/components/ChineseDecorDivider";
+import { useLanguage } from "@/lib/language-context";
 
 export default function PackagesPage() {
+  const { t } = useLanguage();
   return (
     <>
       <section className="pt-32 pb-16 px-6 bg-cream text-center relative">
@@ -16,7 +18,7 @@ export default function PackagesPage() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          高端养生套餐
+          {t("高端养生套餐", "Premium Wellness Packages")}
         </motion.h1>
         <motion.p
           className="font-heading text-2xl text-text-muted italic mb-4"
@@ -24,7 +26,7 @@ export default function PackagesPage() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          Premium Wellness Packages
+          {t("Premium Wellness Packages", "高端养生套餐")}
         </motion.p>
         <motion.p
           className="font-cn-body text-text-muted"
@@ -32,7 +34,7 @@ export default function PackagesPage() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          每一个套餐，都是专属于您的疗愈旅程
+          {t("每一个套餐，都是专属于您的疗愈旅程", "Every package is a healing journey made just for you")}
         </motion.p>
         <motion.div
           className="h-[2px] w-24 bg-gold mx-auto mt-6"
@@ -52,8 +54,7 @@ export default function PackagesPage() {
           ))}
         </div>
         <p className="text-center text-sm text-text-muted/60 mt-12 font-cn-body">
-          * 以上价格仅供参考，详情请通过 WhatsApp 咨询 / Prices are for
-          reference only, please enquire via WhatsApp
+          {t("* 以上价格仅供参考，详情请通过 WhatsApp 咨询", "* Prices are for reference only, please enquire via WhatsApp")}
         </p>
       </section>
     </>

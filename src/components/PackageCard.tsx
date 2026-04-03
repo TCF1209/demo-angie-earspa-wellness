@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import type { PACKAGES } from "@/lib/constants";
 import { buildPackageBookingMessage } from "@/lib/whatsapp";
+import { useLanguage } from "@/lib/language-context";
 
 interface PackageCardProps {
   pkg: (typeof PACKAGES)[0];
@@ -11,6 +12,7 @@ interface PackageCardProps {
 }
 
 export function PackageCard({ pkg, index }: PackageCardProps) {
+  const { t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
 
@@ -45,18 +47,15 @@ export function PackageCard({ pkg, index }: PackageCardProps) {
       {/* Popular badge */}
       {pkg.popular && (
         <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gold text-white font-ui text-xs tracking-wider px-5 py-1 rounded-full shadow-md">
-          Most Popular
+          {t("最受欢迎", "Most Popular")}
         </span>
       )}
 
       {/* Package name */}
       <div className="text-center">
         <h3 className="font-cn-heading text-2xl text-heritage">
-          {pkg.nameCN}
+          {t(pkg.nameCN, pkg.nameEN)}
         </h3>
-        <p className="font-heading text-lg text-rose-deep mt-0.5">
-          {pkg.nameEN}
-        </p>
       </div>
 
       {/* Price */}
@@ -89,7 +88,7 @@ export function PackageCard({ pkg, index }: PackageCardProps) {
         rel="noopener noreferrer"
         className="block w-full text-center bg-heritage text-cream font-ui text-sm tracking-wide py-3.5 rounded-full hover:bg-heritage/90 transition-colors mt-auto"
       >
-        立即预约 Book Now
+        {t("📲 预约此套餐", "📲 Book This Package")}
       </a>
     </motion.div>
   );

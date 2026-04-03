@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import type { SERVICES } from "@/lib/constants";
 import { buildServiceBookingMessage } from "@/lib/whatsapp";
+import { useLanguage } from "@/lib/language-context";
 
 interface ServiceCardProps {
   service: (typeof SERVICES)[0];
@@ -11,6 +12,7 @@ interface ServiceCardProps {
 }
 
 export function ServiceCard({ service, index }: ServiceCardProps) {
+  const { t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
 
@@ -33,24 +35,21 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
       {/* Icon */}
       <span className="text-4xl leading-none">{service.icon}</span>
 
-      {/* Names */}
+      {/* Name */}
       <div>
         <h3 className="font-cn-heading text-xl text-heritage leading-tight">
-          {service.nameCN}
+          {t(service.nameCN, service.nameEN)}
         </h3>
-        <p className="font-heading text-base text-rose-deep mt-0.5">
-          {service.nameEN}
-        </p>
       </div>
 
       {/* Description (1-line) */}
       <p className="font-cn-body text-sm text-text-muted leading-relaxed line-clamp-1">
-        {service.descCN}
+        {t(service.descCN, service.descEN)}
       </p>
 
       {/* Price pill */}
       <span className="inline-block bg-cream text-heritage font-ui text-sm px-4 py-1.5 rounded-full">
-        从 RM {service.priceFrom} 起
+        {t(`从 RM ${service.priceFrom} 起`, `From RM ${service.priceFrom}`)}
       </span>
 
       {/* Link */}
@@ -60,7 +59,7 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
         rel="noopener noreferrer"
         className="font-ui text-sm text-rose-deep hover:text-heritage transition-colors mt-auto"
       >
-        了解更多 &rarr;
+        {t("了解更多 →", "Learn more →")}
       </a>
     </motion.div>
   );

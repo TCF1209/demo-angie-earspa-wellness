@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Star } from "lucide-react";
 import type { TESTIMONIALS } from "@/lib/constants";
+import { useLanguage } from "@/lib/language-context";
 
 interface TestimonialCardProps {
   testimonial: (typeof TESTIMONIALS)[0];
@@ -11,6 +12,7 @@ interface TestimonialCardProps {
 }
 
 export function TestimonialCard({ testimonial, index }: TestimonialCardProps) {
+  const { t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
 
@@ -40,7 +42,7 @@ export function TestimonialCard({ testimonial, index }: TestimonialCardProps) {
             {testimonial.name}
           </p>
           <p className="font-ui text-xs text-text-muted mt-0.5">
-            {testimonial.branch}
+            {t("到访", "visited")} {testimonial.branch}
           </p>
         </div>
       </div>
@@ -60,13 +62,10 @@ export function TestimonialCard({ testimonial, index }: TestimonialCardProps) {
         ))}
       </div>
 
-      {/* Bilingual quote */}
+      {/* Quote */}
       <div className="flex flex-col gap-2">
         <p className="font-cn-body text-sm text-heritage leading-relaxed">
-          &ldquo;{testimonial.quoteCN}&rdquo;
-        </p>
-        <p className="font-sans text-sm text-text-muted leading-relaxed italic">
-          &ldquo;{testimonial.quoteEN}&rdquo;
+          &ldquo;{t(testimonial.quoteCN, testimonial.quoteEN)}&rdquo;
         </p>
       </div>
     </motion.div>

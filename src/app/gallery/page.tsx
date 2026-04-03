@@ -5,8 +5,10 @@ import Link from "next/link";
 import { GalleryGrid } from "@/components/GalleryGrid";
 import { GALLERY_IMAGES } from "@/lib/constants";
 import { ChineseDecorDivider } from "@/components/ChineseDecorDivider";
+import { useLanguage } from "@/lib/language-context";
 
 export default function GalleryPage() {
+  const { t } = useLanguage();
   return (
     <>
       <section className="pt-32 pb-16 px-6 bg-gradient-to-b from-blush-light/50 to-cream text-center relative grain-texture">
@@ -16,7 +18,7 @@ export default function GalleryPage() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          图库
+          {t("图库", "Gallery")}
         </motion.h1>
         <motion.p
           className="font-heading text-2xl text-text-muted italic"
@@ -24,7 +26,7 @@ export default function GalleryPage() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          Gallery
+          {t("Gallery", "图库")}
         </motion.p>
         <motion.div
           className="h-[2px] w-24 bg-gold mx-auto mt-6"
@@ -52,7 +54,7 @@ export default function GalleryPage() {
             href="/book"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-rose-deep text-white font-ui text-lg hover:bg-blush transition-colors hover:scale-105 active:scale-95 border-2 border-gold/40"
           >
-            想亲身体验？立即预约 →
+            {t("想亲身体验？立即预约 →", "Want to experience it? Book now →")}
           </Link>
         </motion.div>
       </section>

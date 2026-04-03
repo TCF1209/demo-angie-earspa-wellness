@@ -3,8 +3,10 @@
 import { motion } from "framer-motion";
 import { BookingForm } from "@/components/BookingForm";
 import { ChineseDecorDivider } from "@/components/ChineseDecorDivider";
+import { useLanguage } from "@/lib/language-context";
 
 export default function BookPage() {
+  const { t } = useLanguage();
   return (
     <>
       <section className="pt-32 pb-16 px-6 bg-gradient-to-b from-blush-light/50 to-cream text-center relative grain-texture">
@@ -14,7 +16,7 @@ export default function BookPage() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          预约
+          {t("预约", "Book Now")}
         </motion.h1>
         <motion.p
           className="font-heading text-2xl text-text-muted italic"
@@ -22,7 +24,7 @@ export default function BookPage() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          Book Now
+          {t("Book Now", "预约")}
         </motion.p>
         <motion.div
           className="h-[2px] w-24 bg-gold mx-auto mt-6"

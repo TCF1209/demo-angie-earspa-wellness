@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { MapPin, Phone } from "lucide-react";
 import { NAV_LINKS, BRAND, SERVICES, BRANCHES, WHATSAPP_NUMBER } from "@/lib/constants";
+import { useLanguage } from "@/lib/language-context";
 
 const quickLinks = NAV_LINKS.filter(
   (l) => l.href !== "/book" && l.href !== "/"
@@ -48,6 +49,8 @@ const itemVariants = {
 };
 
 export function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className="bg-heritage text-cream/80">
       {/* Top: logo + tagline */}
@@ -66,13 +69,10 @@ export function Footer() {
             />
           </div>
           <h3 className="font-heading text-2xl text-cream font-semibold">
-            {BRAND.nameEN}
+            {t(BRAND.nameCN, BRAND.nameEN)}
           </h3>
-          <p className="font-cn-heading text-sm text-cream/60 mt-1">
-            {BRAND.nameCN}
-          </p>
           <p className="font-display text-sm italic text-gold mt-2 tracking-wide">
-            {BRAND.taglineEN}
+            {t(BRAND.taglineCN, BRAND.taglineEN)}
           </p>
         </div>
 
@@ -87,7 +87,7 @@ export function Footer() {
           {/* Quick links */}
           <motion.div variants={itemVariants}>
             <h4 className="font-ui text-sm uppercase tracking-widest text-gold mb-4">
-              Quick Links
+              {t("快捷链接", "Quick Links")}
             </h4>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
@@ -96,7 +96,7 @@ export function Footer() {
                     href={link.href}
                     className="font-ui text-sm text-cream/70 hover:text-blush transition-colors duration-200"
                   >
-                    {link.labelCN} / {link.labelEN}
+                    {t(link.labelCN, link.labelEN)}
                   </Link>
                 </li>
               ))}
@@ -106,7 +106,7 @@ export function Footer() {
           {/* Services */}
           <motion.div variants={itemVariants}>
             <h4 className="font-ui text-sm uppercase tracking-widest text-gold mb-4">
-              Services
+              {t("服务项目", "Services")}
             </h4>
             <ul className="space-y-2">
               {serviceLinks.map((svc) => (
@@ -115,7 +115,7 @@ export function Footer() {
                     href="/services"
                     className="font-ui text-sm text-cream/70 hover:text-blush transition-colors duration-200"
                   >
-                    {svc.nameCN} / {svc.nameEN}
+                    {t(svc.nameCN, svc.nameEN)}
                   </Link>
                 </li>
               ))}
@@ -125,7 +125,7 @@ export function Footer() {
           {/* Contact & Social */}
           <motion.div variants={itemVariants}>
             <h4 className="font-ui text-sm uppercase tracking-widest text-gold mb-4">
-              Contact & Social
+              {t("联系我们", "Contact & Social")}
             </h4>
 
             {/* First branch as primary contact */}
@@ -171,7 +171,7 @@ export function Footer() {
       <div className="border-t border-cream/10">
         <div className="mx-auto max-w-7xl px-4 py-5 lg:px-8">
           <p className="text-center font-ui text-xs text-cream/40 tracking-wide">
-            &copy; 2025 {BRAND.nameEN} {BRAND.nameCN}
+            &copy; 2025 {t(BRAND.nameCN, BRAND.nameEN)}
           </p>
         </div>
       </div>

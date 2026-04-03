@@ -5,10 +5,12 @@ import { useRef } from "react";
 import Image from "next/image";
 import { BRAND } from "@/lib/constants";
 import { ChineseDecorDivider } from "@/components/ChineseDecorDivider";
+import { useLanguage } from "@/lib/language-context";
 
 function BrandPhilosophy() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const { t } = useLanguage();
 
   return (
     <section ref={ref} className="py-24 px-6 bg-cream">
@@ -20,13 +22,10 @@ function BrandPhilosophy() {
           transition={{ duration: 0.6 }}
         >
           <p className="font-cn-heading text-xl md:text-2xl text-heritage leading-relaxed mb-6">
-            我们相信，真正的美丽源自内在的和谐与平衡。Angie Earspa
-            将中华传统养生智慧与现代美容科技相结合，为每一位客人打造专属的身心疗愈体验。
+            {t("我们相信，真正的美丽源自内在的和谐与平衡。Angie Earspa 将中华传统养生智慧与现代美容科技相结合，为每一位客人打造专属的身心疗愈体验。", "We believe true beauty begins from within. Angie Earspa blends the wisdom of traditional Chinese wellness with modern beauty expertise — creating a sanctuary where every visit is a ritual of renewal.")}
           </p>
           <p className="font-heading text-lg text-text-muted italic leading-relaxed">
-            We believe true beauty begins from within. Angie Earspa blends the
-            wisdom of traditional Chinese wellness with modern beauty expertise —
-            creating a sanctuary where every visit is a ritual of renewal.
+            {t("We believe true beauty begins from within. Angie Earspa blends the wisdom of traditional Chinese wellness with modern beauty expertise — creating a sanctuary where every visit is a ritual of renewal.", "我们相信，真正的美丽源自内在的和谐与平衡。Angie Earspa 将中华传统养生智慧与现代美容科技相结合，为每一位客人打造专属的身心疗愈体验。")}
           </p>
         </motion.div>
 
@@ -41,6 +40,7 @@ function BrandPhilosophy() {
               src="/images/gallery-3.webp"
               alt="Angie Earspa Interior"
               fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-blush/20 to-transparent" />
@@ -55,6 +55,7 @@ function BrandPhilosophy() {
 function BrandValues() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const { t } = useLanguage();
 
   const values = [
     {
@@ -93,7 +94,7 @@ function BrandValues() {
             animate={inView ? { x: 0, opacity: 1 } : {}}
             transition={{ duration: 0.5 }}
           >
-            我们的理念
+            {t("我们的理念", "Our Values")}
           </motion.h2>
           <motion.p
             className="font-heading text-xl text-text-muted italic"
@@ -101,7 +102,7 @@ function BrandValues() {
             animate={inView ? { x: 0, opacity: 1 } : {}}
             transition={{ duration: 0.5, delay: 0.05 }}
           >
-            Our Values
+            {t("Our Values", "我们的理念")}
           </motion.p>
           <motion.div
             className="h-[2px] w-24 bg-gold mx-auto mt-6"
@@ -127,15 +128,15 @@ function BrandValues() {
             >
               <span className="text-4xl mb-4 block">{val.icon}</span>
               <h3 className="font-cn-heading text-xl text-heritage mb-1">
-                {val.titleCN}
+                {t(val.titleCN, val.titleEN)}
               </h3>
               <p className="font-heading text-sm text-text-muted italic mb-3">
-                {val.titleEN}
+                {t(val.titleEN, val.titleCN)}
               </p>
               <p className="font-cn-body text-sm text-text-muted leading-relaxed">
-                {val.descCN}
+                {t(val.descCN, val.descEN)}
               </p>
-              <p className="text-xs text-text-muted/70 mt-1">{val.descEN}</p>
+              <p className="text-xs text-text-muted/70 mt-1">{t(val.descEN, val.descCN)}</p>
             </motion.div>
           ))}
         </div>
@@ -145,6 +146,7 @@ function BrandValues() {
 }
 
 export default function AboutPage() {
+  const { t } = useLanguage();
   return (
     <>
       {/* Hero */}
@@ -159,6 +161,7 @@ export default function AboutPage() {
             src="/images/logo.jpg"
             alt={BRAND.nameCN}
             fill
+            sizes="112px"
             className="object-cover"
           />
         </motion.div>
@@ -168,7 +171,7 @@ export default function AboutPage() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          关于我们
+          {t("关于我们", "About Us")}
         </motion.h1>
         <motion.p
           className="font-heading text-2xl text-text-muted italic mb-2"
@@ -176,7 +179,7 @@ export default function AboutPage() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          About Us
+          {t("About Us", "关于我们")}
         </motion.p>
         <motion.p
           className="font-cn-heading text-lg text-heritage"

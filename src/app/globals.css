@@ -108,7 +108,7 @@
     @apply bg-cream text-heritage;
   }
   html {
-    @apply font-sans scroll-smooth;
+    @apply font-sans;
   }
 }
 

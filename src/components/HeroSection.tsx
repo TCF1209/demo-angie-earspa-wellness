@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import { BRAND, WHATSAPP_NUMBER } from "@/lib/constants";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
+import { useLanguage } from "@/lib/language-context";
 
 const fadeUp = (delay: number) => ({
   initial: { opacity: 0, y: 20 },
@@ -57,6 +58,7 @@ const LotusSVG = () => (
 );
 
 export function HeroSection() {
+  const { t } = useLanguage();
   const whatsappLink = buildWhatsAppLink(
     WHATSAPP_NUMBER,
     `您好！我想预约服务。\nHi! I'd like to make a booking.`
@@ -100,7 +102,7 @@ export function HeroSection() {
                 {...fadeUp(0)}
                 className="font-ui text-sm md:text-base tracking-[0.2em] text-gold uppercase"
               >
-                传统养生 · 现代护理
+                {t("传统养生 · 现代护理", "Traditional Wellness · Modern Care")}
               </motion.p>
 
               {/* CN Headline */}
@@ -108,7 +110,7 @@ export function HeroSection() {
                 {...fadeUp(0.15)}
                 className="font-display font-cn-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-heritage leading-tight"
               >
-                {BRAND.taglineCN}
+                {t("还您身心的宁静", "Restore Your Inner Peace")}
               </motion.h1>
 
               {/* EN Subheadline */}
@@ -116,7 +118,7 @@ export function HeroSection() {
                 {...fadeUp(0.28)}
                 className="font-display text-xl md:text-2xl lg:text-3xl text-blush italic"
               >
-                {BRAND.taglineEN}
+                {t("Restore. Renew. Revive.", BRAND.taglineCN)}
               </motion.p>
 
               {/* Body */}
@@ -124,7 +126,7 @@ export function HeroSection() {
                 {...fadeUp(0.38)}
                 className="font-cn-body text-base md:text-lg text-text-muted tracking-wide"
               >
-                专业采耳 · 头疗养生 · 子宫护理 · 高端美容
+                {t("专业采耳 · 头疗养生 · 子宫护理 · 高端美容", "Professional Ear Spa · Head Therapy · Womb Care · Premium Beauty")}
               </motion.p>
 
               {/* CTAs */}
@@ -140,13 +142,13 @@ export function HeroSection() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 bg-rose-deep text-white font-ui text-base md:text-lg px-7 py-3.5 rounded-full border-2 border-gold hover:brightness-110 transition-all duration-300 w-full sm:w-auto"
                 >
-                  <span>📲</span> 立即预约 WhatsApp
+                  {t("📲 立即预约 WhatsApp", "📲 Book via WhatsApp")}
                 </a>
                 <Link
                   href="/services"
                   className="inline-flex items-center justify-center gap-1 bg-transparent text-heritage font-ui text-base md:text-lg px-7 py-3.5 rounded-full border-2 border-heritage/30 hover:border-heritage/60 transition-all duration-300 w-full sm:w-auto"
                 >
-                  探索服务 <span className="ml-1">→</span>
+                  {t("探索服务 →", "Explore Services →")}
                 </Link>
               </motion.div>
             </div>
@@ -184,7 +186,7 @@ export function HeroSection() {
           >
             <div className="bg-cream px-4 py-2 md:px-5 md:py-2.5 rounded-xl border-2 border-gold shadow-lg">
               <p className="font-ui text-xs md:text-sm text-heritage font-semibold whitespace-nowrap">
-                4家分店 · 全马服务
+                {t("4家分店 · 全马服务", "4 Branches · Nationwide")}
               </p>
             </div>
           </motion.div>

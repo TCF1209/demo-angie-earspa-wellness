@@ -4,8 +4,10 @@ import { motion } from "framer-motion";
 import { BranchCard } from "@/components/BranchCard";
 import { BRANCHES } from "@/lib/constants";
 import { ChineseDecorDivider } from "@/components/ChineseDecorDivider";
+import { useLanguage } from "@/lib/language-context";
 
 export default function BranchesPage() {
+  const { t } = useLanguage();
   return (
     <>
       <section className="pt-32 pb-16 px-6 bg-gradient-to-b from-blush-light/50 to-cream text-center relative grain-texture">
@@ -15,7 +17,7 @@ export default function BranchesPage() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          全马4家分店
+          {t("全马4家分店", "4 Locations Across Malaysia")}
         </motion.h1>
         <motion.p
           className="font-heading text-2xl text-text-muted italic"
@@ -23,7 +25,7 @@ export default function BranchesPage() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          4 Locations Across Malaysia
+          {t("4 Locations Across Malaysia", "全马4家分店")}
         </motion.p>
         <motion.div
           className="h-[2px] w-24 bg-gold mx-auto mt-6"

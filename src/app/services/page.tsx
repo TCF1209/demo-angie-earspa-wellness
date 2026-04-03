@@ -6,6 +6,7 @@ import Image from "next/image";
 import { SERVICES } from "@/lib/constants";
 import { buildServiceBookingMessage } from "@/lib/whatsapp";
 import { ChineseDecorDivider } from "@/components/ChineseDecorDivider";
+import { useLanguage } from "@/lib/language-context";
 import { MessageCircle } from "lucide-react";
 
 function ServiceDetail({
@@ -17,6 +18,7 @@ function ServiceDetail({
 }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const { t } = useLanguage();
   const isEven = index % 2 === 0;
 
   return (
@@ -43,6 +45,7 @@ function ServiceDetail({
             src={`/images/gallery-${(index % 5) + 1}.webp`}
             alt={service.nameEN}
             fill
+            sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-cover"
           />
         </motion.div>
@@ -55,16 +58,16 @@ function ServiceDetail({
         >
           <span className="text-4xl mb-4 block">{service.icon}</span>
           <h2 className="font-cn-heading text-3xl text-heritage mb-1">
-            {service.nameCN}
+            {t(service.nameCN, service.nameEN)}
           </h2>
           <p className="font-heading text-xl text-text-muted italic mb-6">
-            {service.nameEN}
+            {t(service.nameEN, service.nameCN)}
           </p>
 
           <p className="font-cn-body text-text-muted leading-relaxed mb-2">
-            {service.descCN}
+            {t(service.descCN, service.descEN)}
           </p>
-          <p className="text-sm text-text-muted/70 mb-6">{service.descEN}</p>
+          <p className="text-sm text-text-muted/70 mb-6">{t(service.descEN, service.descCN)}</p>
 
           <ul className="space-y-2 mb-6">
             {service.benefits.map((b) => (
@@ -80,8 +83,7 @@ function ServiceDetail({
 
           <div className="flex items-center gap-6 flex-wrap">
             <p className="font-heading text-2xl text-heritage">
-              从 <span className="text-rose-deep">RM {service.priceFrom}</span>{" "}
-              起
+              {t(`从 `, `From `)}<span className="text-rose-deep">RM {service.priceFrom}</span>{t(` 起`, ``)}
             </p>
             <a
               href={buildServiceBookingMessage(service.nameCN)}
@@ -90,7 +92,7 @@ function ServiceDetail({
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-rose-deep text-white font-ui hover:bg-blush transition-colors hover:scale-105 active:scale-95"
             >
               <MessageCircle className="w-4 h-4" />
-              📲 WhatsApp 预约
+              {t("📲 WhatsApp 预约", "📲 Book via WhatsApp")}
             </a>
           </div>
         </motion.div>
@@ -100,6 +102,7 @@ function ServiceDetail({
 }
 
 export default function ServicesPage() {
+  const { t } = useLanguage();
   return (
     <>
       <section className="pt-32 pb-16 px-6 bg-gradient-to-b from-blush-light/50 to-cream text-center relative grain-texture">
@@ -109,7 +112,7 @@ export default function ServicesPage() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          我们的服务
+          {t("我们的服务", "Our Services")}
         </motion.h1>
         <motion.p
           className="font-heading text-2xl text-text-muted italic"
@@ -117,7 +120,7 @@ export default function ServicesPage() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          Our Services
+          {t("Our Services", "我们的服务")}
         </motion.p>
         <motion.div
           className="h-[2px] w-24 bg-gold mx-auto mt-6"

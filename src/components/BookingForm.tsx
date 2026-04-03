@@ -3,8 +3,10 @@
 import { useState } from "react";
 import { BRANCHES, SERVICES } from "@/lib/constants";
 import { buildBookingMessage, buildWhatsAppLink } from "@/lib/whatsapp";
+import { useLanguage } from "@/lib/language-context";
 
 export function BookingForm() {
+  const { t } = useLanguage();
   const [form, setForm] = useState({
     name: "",
     contact: "",
@@ -57,7 +59,7 @@ export function BookingForm() {
       {/* Name */}
       <div>
         <label htmlFor="booking-name" className={labelBase}>
-          姓名 Name
+          {t("姓名", "Name")}
         </label>
         <input
           id="booking-name"
@@ -66,7 +68,7 @@ export function BookingForm() {
           required
           value={form.name}
           onChange={handleChange}
-          placeholder="请输入姓名"
+          placeholder={t("请输入姓名", "Enter your name")}
           className={inputBase}
         />
       </div>
@@ -74,7 +76,7 @@ export function BookingForm() {
       {/* Contact */}
       <div>
         <label htmlFor="booking-contact" className={labelBase}>
-          联系号码 Contact Number
+          {t("联系号码", "Contact Number")}
         </label>
         <input
           id="booking-contact"
@@ -83,7 +85,7 @@ export function BookingForm() {
           required
           value={form.contact}
           onChange={handleChange}
-          placeholder="例如 012-345 6789"
+          placeholder={t("例如 012-345 6789", "e.g. 012-345 6789")}
           className={inputBase}
         />
       </div>
@@ -91,7 +93,7 @@ export function BookingForm() {
       {/* Branch */}
       <div>
         <label htmlFor="booking-branch" className={labelBase}>
-          首选分店 Preferred Branch
+          {t("首选分店", "Preferred Branch")}
         </label>
         <select
           id="booking-branch"
@@ -101,7 +103,7 @@ export function BookingForm() {
           onChange={handleChange}
           className={inputBase + " appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%238B7355%22%20d%3D%22M2%204l4%204%204-4%22/%3E%3C/svg%3E')] bg-[length:12px] bg-[right_16px_center] bg-no-repeat pr-10"}
         >
-          <option value="">请选择分店</option>
+          <option value="">{t("请选择分店", "Select a branch")}</option>
           {BRANCHES.map((b) => (
             <option key={b.id} value={b.name}>
               {b.name}
@@ -113,7 +115,7 @@ export function BookingForm() {
       {/* Service */}
       <div>
         <label htmlFor="booking-service" className={labelBase}>
-          服务 Service
+          {t("服务", "Service")}
         </label>
         <select
           id="booking-service"
@@ -123,10 +125,10 @@ export function BookingForm() {
           onChange={handleChange}
           className={inputBase + " appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%238B7355%22%20d%3D%22M2%204l4%204%204-4%22/%3E%3C/svg%3E')] bg-[length:12px] bg-[right_16px_center] bg-no-repeat pr-10"}
         >
-          <option value="">请选择服务</option>
+          <option value="">{t("请选择服务", "Select a service")}</option>
           {SERVICES.map((s) => (
             <option key={s.id} value={`${s.nameCN} ${s.nameEN}`}>
-              {s.icon} {s.nameCN} {s.nameEN}
+              {s.icon} {t(s.nameCN, s.nameEN)}
             </option>
           ))}
         </select>
@@ -136,7 +138,7 @@ export function BookingForm() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
           <label htmlFor="booking-date" className={labelBase}>
-            首选日期 Preferred Date
+            {t("首选日期", "Preferred Date")}
           </label>
           <input
             id="booking-date"
@@ -150,7 +152,7 @@ export function BookingForm() {
         </div>
         <div>
           <label htmlFor="booking-time" className={labelBase}>
-            首选时间 Preferred Time
+            {t("首选时间", "Preferred Time")}
           </label>
           <input
             id="booking-time"
@@ -167,7 +169,7 @@ export function BookingForm() {
       {/* Remarks */}
       <div>
         <label htmlFor="booking-remarks" className={labelBase}>
-          备注 Remarks <span className="text-text-muted/60">(选填 Optional)</span>
+          {t("备注", "Remarks")} <span className="text-text-muted/60">({t("选填", "Optional")})</span>
         </label>
         <textarea
           id="booking-remarks"
@@ -175,7 +177,7 @@ export function BookingForm() {
           value={form.remarks}
           onChange={handleChange}
           rows={3}
-          placeholder="如有特殊需求，请在此备注"
+          placeholder={t("如有特殊需求，请在此备注", "Any special requests or notes")}
           className={inputBase + " resize-none"}
         />
       </div>
@@ -185,14 +187,15 @@ export function BookingForm() {
         type="submit"
         className="w-full bg-heritage text-cream font-ui text-base tracking-wide py-4 min-h-[48px] rounded-full hover:bg-heritage/90 active:scale-[0.98] transition-all shadow-md"
       >
-        📲 发送至 WhatsApp
+        {t("📲 发送至 WhatsApp", "📲 Send via WhatsApp")}
       </button>
 
       {/* Reassurance */}
       <p className="text-center font-cn-body text-xs text-text-muted leading-relaxed">
-        您的预约信息将通过 WhatsApp 发送至所选分店。
-        <br />
-        我们的团队将尽快确认您的预约时间。
+        {t(
+          "您的预约信息将通过 WhatsApp 发送至所选分店。我们的团队将尽快确认您的预约时间。",
+          "Your booking details will be sent to the selected branch via WhatsApp. Our team will confirm your appointment shortly."
+        )}
       </p>
     </form>
   );

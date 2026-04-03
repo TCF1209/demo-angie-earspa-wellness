@@ -15,6 +15,7 @@ import {
   WHATSAPP_NUMBER,
 } from "@/lib/constants";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
+import { useLanguage } from "@/lib/language-context";
 import { MapPin, MessageCircle } from "lucide-react";
 
 function SectionTitle({
@@ -28,6 +29,7 @@ function SectionTitle({
 }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const { t } = useLanguage();
 
   return (
     <div ref={ref} className={`text-center mb-16 ${className}`}>
@@ -37,7 +39,7 @@ function SectionTitle({
         animate={inView ? { x: 0, opacity: 1 } : {}}
         transition={{ duration: 0.5 }}
       >
-        {cn}
+        {t(cn, en)}
       </motion.h2>
       <motion.p
         className="font-heading text-xl md:text-2xl text-text-muted italic"
@@ -45,7 +47,7 @@ function SectionTitle({
         animate={inView ? { x: 0, opacity: 1 } : {}}
         transition={{ duration: 0.5, delay: 0.05 }}
       >
-        {en}
+        {t(en, cn)}
       </motion.p>
       <motion.div
         className="h-[2px] w-24 bg-gold mx-auto mt-6"
@@ -61,13 +63,14 @@ function SectionTitle({
 function ServicesStrip() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const { t } = useLanguage();
   const services = [
-    { icon: "👂", label: "采耳" },
-    { icon: "💆", label: "头疗" },
-    { icon: "🌸", label: "子宫护理" },
-    { icon: "✨", label: "除毛" },
-    { icon: "👁️", label: "洗眼" },
-    { icon: "🧖", label: "养生套餐" },
+    { icon: "👂", label: t("采耳", "Ear Spa") },
+    { icon: "💆", label: t("头疗", "Head Therapy") },
+    { icon: "🌸", label: t("子宫护理", "Womb Care") },
+    { icon: "✨", label: t("除毛", "Hair Removal") },
+    { icon: "👁️", label: t("洗眼", "Eye Cleansing") },
+    { icon: "🧖", label: t("养生套餐", "Wellness Packages") },
   ];
 
   return (
@@ -95,6 +98,7 @@ function ServicesStrip() {
 function WhyChooseUs() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const { t } = useLanguage();
   const items = [
     {
       icon: "🌿",
@@ -136,15 +140,15 @@ function WhyChooseUs() {
           >
             <span className="text-4xl mb-4 block">{item.icon}</span>
             <h3 className="font-cn-heading text-xl text-heritage mb-1">
-              {item.titleCN}
+              {t(item.titleCN, item.titleEN)}
             </h3>
             <p className="font-heading text-sm text-text-muted italic mb-3">
-              {item.titleEN}
+              {t(item.titleEN, item.titleCN)}
             </p>
             <p className="font-cn-body text-sm text-text-muted leading-relaxed">
-              {item.descCN}
+              {t(item.descCN, item.descEN)}
             </p>
-            <p className="text-xs text-text-muted/70 mt-1">{item.descEN}</p>
+            <p className="text-xs text-text-muted/70 mt-1">{t(item.descEN, item.descCN)}</p>
           </motion.div>
         ))}
       </div>
@@ -155,6 +159,7 @@ function WhyChooseUs() {
 function ServicesPreview() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const { t } = useLanguage();
 
   return (
     <section ref={ref} className="py-24 px-6 bg-cream-alt">
@@ -174,7 +179,7 @@ function ServicesPreview() {
           href="/packages"
           className="inline-block font-ui text-heritage hover:text-rose-deep transition-colors border-b border-gold pb-1"
         >
-          查看全部套餐 → View All Packages
+          {t("查看全部套餐 →", "View All Packages →")}
         </Link>
       </motion.div>
     </section>
@@ -197,6 +202,7 @@ function TestimonialsSection() {
 function BranchesPreview() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const { t } = useLanguage();
 
   return (
     <section ref={ref} className="py-24 px-6 bg-cream">
@@ -232,7 +238,7 @@ function BranchesPreview() {
           href="/branches"
           className="font-ui text-heritage hover:text-rose-deep transition-colors border-b border-gold pb-1"
         >
-          查看所有分店详情 → View All Branches
+          {t("查看所有分店详情 →", "View All Branches →")}
         </Link>
       </div>
     </section>
@@ -240,6 +246,7 @@ function BranchesPreview() {
 }
 
 function CTABanner() {
+  const { t } = useLanguage();
   return (
     <section className="py-20 px-6 bg-gradient-to-r from-blush to-rose-deep relative overflow-hidden">
       <div className="absolute inset-0 opacity-10">
@@ -248,10 +255,10 @@ function CTABanner() {
       </div>
       <div className="relative max-w-3xl mx-auto text-center">
         <h2 className="font-cn-heading text-3xl md:text-4xl text-white mb-3">
-          预约您的专属体验
+          {t("预约您的专属体验", "Book Your Experience Today")}
         </h2>
         <p className="font-heading text-xl text-white/80 italic mb-8">
-          Book Your Experience Today
+          {t("Book Your Experience Today", "预约您的专属体验")}
         </p>
         <a
           href={buildWhatsAppLink(WHATSAPP_NUMBER)}
@@ -260,7 +267,7 @@ function CTABanner() {
           className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-heritage text-cream border-2 border-gold font-ui text-lg hover:scale-105 hover:shadow-xl transition-all"
         >
           <MessageCircle className="w-5 h-5" />
-          📲 立即预约 WhatsApp
+          {t("📲 立即预约 WhatsApp", "📲 Book via WhatsApp")}
         </a>
       </div>
     </section>
