@@ -170,8 +170,8 @@ function ServicesStrip() {
   ];
 
   return (
-    <div ref={ref} className="py-8 bg-cream-alt overflow-x-auto">
-      <div className="flex justify-center gap-4 md:gap-8 px-6 min-w-max md:min-w-0">
+    <div ref={ref} className="py-8 bg-cream-alt overflow-hidden">
+      <div className="flex flex-wrap justify-center gap-3 md:gap-8 px-4">
         {services.map((s, i) => (
           <motion.div
             key={s.label}

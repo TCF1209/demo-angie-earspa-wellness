@@ -45,7 +45,7 @@ function BrandPhilosophy() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-blush/20 to-transparent" />
           </div>
-          <div className="absolute -bottom-4 -right-4 w-24 h-24 border-2 border-gold/30 rounded-2xl -z-10" />
+          <div className="absolute -bottom-4 -right-4 w-24 h-24 border-2 border-gold/30 rounded-2xl -z-10 hidden md:block" />
         </motion.div>
       </div>
     </section>
