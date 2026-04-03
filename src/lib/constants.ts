@@ -162,8 +162,8 @@ export const BRANCHES = [
     phone: "03-33916741",
     whatsapp: "60182112544",
     hours: "TODO: replace with real hours",
-    mapUrl: "https://waze.com/ul/hw281hhe7d",
-    mapType: "waze" as const,
+    mapUrl: "https://www.google.com/maps/search/Angie+Earspa+No.2-A+Lorong+Sentosa+4A+Taman+Bayu+Tinggi+41200+Klang+Selangor",
+    mapType: "google" as "google" | "waze",
   },
   {
     id: "setia-alam",
@@ -174,8 +174,8 @@ export const BRANCHES = [
     phone: "03-33595956",
     whatsapp: "60182112544",
     hours: "TODO: replace with real hours",
-    mapUrl: "https://waze.com/ul/hw281skjep",
-    mapType: "waze" as const,
+    mapUrl: "https://www.google.com/maps/search/Angie+Earspa+No.4-2-2+Jalan+Setia+Prima+L+Setia+Alam+40170+Shah+Alam+Selangor",
+    mapType: "google" as "google" | "waze",
   },
   {
     id: "cheras-c180",
@@ -186,8 +186,8 @@ export const BRANCHES = [
     phone: "03-90811359",
     whatsapp: "60182112544",
     hours: "TODO: replace with real hours",
-    mapUrl: "https://maps.app.goo.gl/jm9BCdayksev5Uq",
-    mapType: "google" as const,
+    mapUrl: "https://www.google.com/maps/search/Angie+Earspa+No.12+Jalan+C180+Dataran+C180+43200+Cheras+Selangor",
+    mapType: "google" as "google" | "waze",
   },
   {
     id: "pj-damansara",
@@ -198,8 +198,8 @@ export const BRANCHES = [
     phone: "03-77319481",
     whatsapp: "60182112544",
     hours: "TODO: replace with real hours",
-    mapUrl: "",
-    mapType: "google" as const,
+    mapUrl: "https://www.google.com/maps/search/Angie+Earspa+No.6+Jalan+SS21+58+Damansara+Utama+47400+Petaling+Jaya+Selangor",
+    mapType: "google" as "google" | "waze",
   },
 ];
 
