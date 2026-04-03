@@ -31,8 +31,8 @@ function InstagramIcon({ className }: { className?: string }) {
 }
 
 const socialLinks = [
-  { icon: FacebookIcon, href: "#", label: "Facebook" },
-  { icon: InstagramIcon, href: "#", label: "Instagram" },
+  { icon: FacebookIcon, href: "https://www.facebook.com/sweetyayanailbeautysalon/", label: "Facebook" },
+  { icon: InstagramIcon, href: "https://www.instagram.com/angieearspa_/", label: "Instagram" },
 ];
 
 const containerVariants = {
